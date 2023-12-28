@@ -22,3 +22,13 @@ def login():
             return render_template("login.html" , return_message = "Invalid Password")
         else:
             return render_template("std_home.html" , student_email = student_email)
+
+
+
+@app.route("/admin/login" , methods = ["POST"])
+def admin_login():
+    # if person (instructor) is_role = Instuctor  , he / she has extra privillages
+    # Adding class post or deleting class post , sharing files 
+    # 
+    return "This is only for Authorities "
+    
