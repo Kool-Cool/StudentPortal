@@ -9,41 +9,13 @@ dummy_database = {
 # DataBase Schema
 
 """  
-subjects | teachers | students | grades
-
-
-users
-- id
-- username
-- password
-- first_name
-- last_name
-- email
-- password
-- phone
-- role_id (Student or Tutor or Admin)
-- created
-- modified
-
-roles (Student, Tutor)
-- id
-- name
-- created
-- modified
-
-courses (The courses that Tutors can teach and that Students can be assigned to)
-- id
-- start_date
-- end_date
-- created
-- modified
-- 
-
-users_courses
-- id
-- user_id
-- course_id
-- created
-- modified
+- takes:        ID, course_id, sec_id, semester, year, grade
+- student:      ID, name, dept_name, tot_cred
+- section:      course_id, sec_id, semester, year, building, room_no, time_slot_id
+- course:       course id, title, dept_name, credits
+- time_slot:    time_slot_id, day, start_time, end_time
+- classroom:    building, room_no, capacity
+- teaches:      ID, course_id, sec_id, semester, year
+- instructor:   ID, name, dept_name, salary
 
 """
