@@ -6,6 +6,10 @@ dummy_database = {
     "12345@gmail.com" : "12345"
 }
 
+admin_dummy_database = {
+    "admin@gmail.com" : "admin"
+}
+
 # DataBase Schema
 
 """  
@@ -17,6 +21,9 @@ dummy_database = {
 - classroom:    building, room_no, capacity
 - teaches:      ID, course_id, sec_id, semester, year
 - instructor:   ID, name, dept_name, salary
+
+
+- admin: ID , name , email , password
 
 """
 

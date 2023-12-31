@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Student Login | GSV </title>
+    <title>Admin Login | GSV </title>
     <style>
         .container {
             max-width: 600px;
@@ -40,22 +40,18 @@
 </head>
 <body>
     <div class="container">
-        <h2>Student Login</h2>
-        <form action="/student_login" method="post">
+        <h2>Admin Login</h2>
+        <form action="/admin_login/<email>" method="post">
             <div class="form-group">
-                Email: <input type="email" class="form-control" id="email" name="student_email" placeholder="Enter email" required>
+                Email: <input type="email" class="form-control" id="email" name="admin_email" placeholder="Enter email" required>
             </div>
             <div class="form-group">
-                Password: <input type="password" class="form-control" id="password" name="student_password" placeholder="Enter password" required>
+                Password: <input type="password" class="form-control" id="password" name="admin_password" placeholder="Enter password" required>
             </div>
             <button type="submit" class="btn btn-primary">Login</button>
         </form>
         <h1>{{ return_message }}</h1>
-    </div>
-    <div>
-        <form action="/admin/login" method="post">
-            <button type="submit">For Instructors</button>
-        </form>
+
     </div>
 </body>
 </html>
