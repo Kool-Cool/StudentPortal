@@ -30,7 +30,7 @@ def std_login():
         if ddb[student_email] != student_password:
             return render_template("std_login.html" , return_message = "Invalid Password")
         else:
-            return render_template("std_dashboard.html" , student_email = student_email)
+            return render_template("std_dashboard.html" , student_email = student_email , show_email = student_email)
 
 
 
@@ -67,6 +67,6 @@ def admin_dashboard():
         if adb[admin_email] != admin_password:
             return render_template("admin_login.html" , return_message = "Invalid Password")
         else:
-            return render_template("admin_dashboard.html" , admin_email = admin_email , data = data)
+            return render_template("admin_dashboard.html" , admin_email = admin_email , data = data , show_email = admin_email)
 
     
