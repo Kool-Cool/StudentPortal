@@ -1,18 +1,205 @@
 {% extends "base.html" %}
 
 {% block head_containt %}
-<title> Try| GSV</title>
+<title> Admin Dashboard | GSV</title>
 {% endblock head_containt %}
 
 
+
 {% block body_containt %}
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-6">
-            <h2>THis is for '{{admin_email}}'</h2>
-            
+<div class="container mb-4">
+    <div class="row justify-content-left ">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="card-title p-3 mb-2 bg-info text-white"> Students </h5>
+            </div>
+            <div class="card-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">Student ID</th>
+                    <th scope="col">Roll No</th>
+                    <th scope="col">First Name</th>
+                    <th scope="col">Last Name</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Department ID</th>
+                    <th scope="col">Department Branch</th>
+                    <th scope="col">Credits Earned</th>
+                    <th scope="col">GPA</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for student in data.students %}
+                  <tr>
+                    <td>{{ student.student_id }}</td>
+                    <td>{{ student.roll_no }}</td>
+                    <td>{{ student.first_name }}</td>
+                    <td>{{ student.last_name }}</td>
+                    <td>{{ student.email }}</td>
+                    <td>{{ student.dept_id }}</td>
+                    <td>{{ student.dept_branch }}</td>
+                    <td>{{ student.credits_earned }}</td>
+                    <td>{{ student.gpa }}</td>
+                  </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+              <a href="#" class="btn btn-primary">+ Add New Student</a>
+            </div>
+          </div>
         </div>
     </div>
 </div>
 
+
+<div class="container mb-4">
+    <div class="row justify-content-left ">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="card-title p-3 mb-2 bg-info text-white"> Departments </h5>
+            </div>
+            <div class="card-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">Department ID</th>
+                    <th scope="col">Department Name</th>
+                    <th scope="col">Department Branch</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for department in data.departments %}
+                  <tr>
+                    <td>{{ department.dept_id }}</td>
+                    <td>{{ department.dept_name }}</td>
+                    <td>{{ department.dept_branch }}</td>
+                  </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+              <a href="#" class="btn btn-primary">+ Add New Departments</a>
+            </div>
+          </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="container mb-4">
+    <div class="row justify-content-left ">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="card-title p-3 mb-2 bg-info text-white"> Courses </h5>
+            </div>
+            <div class="card-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">Course ID</th>
+                    <th scope="col">Course Name</th>
+                    <th scope="col">Department ID</th>
+                    <th scope="col">Credits</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for course in data.courses %}
+                  <tr>
+                    <td>{{ course.course_id }}</td>
+                    <td>{{ course.course_name }}</td>
+                    <td>{{ course.dept_id }}</td>
+                    <td>{{ course.credits }}</td>
+                  </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+              <a href="#" class="btn btn-primary">+ Add New Courses</a>
+            </div>
+          </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="container mb-4">
+    <div class="row justify-content-left ">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="card-title p-3 mb-2 bg-info text-white"> Enrollments </h5>
+            </div>
+            <div class="card-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">Enrollment ID</th>
+                    <th scope="col">Student ID</th>
+                    <th scope="col">Roll No</th>
+                    <th scope="col">Course ID</th>
+                    <th scope="col">Semester</th>
+                    <th scope="col">Year</th>
+                    <th scope="col">Grade</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for enrollment in data.enrollments %}
+                  <tr>
+                    <td>{{ enrollment.enrollment_id }}</td>
+                    <td>{{ enrollment.student_id }}</td>
+                    <td>{{ enrollment.roll_no }}</td>
+                    <td>{{ enrollment.course_id }}</td>
+                    <td>{{ enrollment.semester }}</td>
+                    <td>{{ enrollment.year }}</td>
+                    <td>{{ enrollment.grade }}</td>
+                  </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+              <a href="#" class="btn btn-primary">+ Add New Enrollments</a>
+            </div>
+          </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="container mb-4">
+    <div class="row justify-content-left ">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="card-title p-3 mb-2 bg-info text-white"> Grades </h5>
+            </div>
+            <div class="card-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">Course ID</th>
+                    <th scope="col">Student ID</th>
+                    <th scope="col">Enrollment ID</th>
+                    <th scope="col">Semester</th>
+                    <th scope="col">Year</th>
+                    <th scope="col">Quiz 1</th>
+                    <th scope="col">Quiz 2</th>
+                    <th scope="col">End Term</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for grade in data.grades %}
+                  <tr>
+                    <td>{{ grade.course_id }}</td>
+                    <td>{{ grade.student_id }}</td>
+                    <td>{{ grade.enrollment_id }}</td>
+                    <td>{{ grade.semester }}</td>
+                    <td>{{ grade.year }}</td>
+                    <td>{{ grade.quiz_1 }}</td>
+                    <td>{{ grade.quiz_2 }}</td>
+                    <td>{{ grade.end_term }}</td>
+                  </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+              <a href="#" class="btn btn-primary">+ Add New Grades</a>
+            </div>
+          </div>
+        </div>
+    </div>
+</div>
 {% endblock body_containt %}
