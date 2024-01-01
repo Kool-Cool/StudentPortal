@@ -29,15 +29,15 @@
 
         .sidebar {
             height: 100%;
-            width: 0;
+            width: 250px; /* Set the width here */
             position: fixed;
             z-index: 1;
-            top: 0;
+            top: 60px; /* Adjust this value to position the sidebar below the nav bar */
             left: 0;
             background-color: #111;
             overflow-x: hidden;
             transition: 0.5s;
-            padding-top: 60px;
+            padding-top: 20px; /* Adjust this value as needed */
         }
 
         .sidebar a {
@@ -85,11 +85,11 @@
 <div class="topnav">
   <a href="#home">Logo</a>
   <a style="float:right" href="#logout">Logout</a>
-  <a style="float:right" href="#email">Email</a>
+  <a style="float:right" href="#email">{{student_email}}</a>
 </div>
 
 <div id="mySidebar" class="sidebar">
-  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
+
   <a href="#">Latest Updates</a>
   <a href="#">Exam Cities and Hall Tickets</a>
   <a href="#">My Current Courses</a>
@@ -120,5 +120,8 @@
     }
 </script>
 
+<div>
+    <h1> Welcome {{student_email}} to Dashboard </h1>
+</div>
 </body>
 </html>

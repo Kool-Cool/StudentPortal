@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block head_containt %}
-<title> admin Login | GSV</title>
+<title> Student Login | GSV</title>
 {% endblock head_containt %}
 
 
@@ -9,16 +9,17 @@
 <div class="container">
     <div class="row justify-content-center ">
         <div class="col-md-6">
-            <h2 >Admin Login Form | GSV</h2>
+            <h2 >Student Login Form | GSV</h2>
             
-            <form action="/admin_dashbord" method="post">
+            
+            <form action="/student_dashbord" method="post">
                 <div class="form-group">
                     <label for="email">Email:</label>
-                    <input type="email" class="form-control" id="email" name="admin_email" required>
+                    <input type="email" class="form-control" id="email" name="student_email" required>
                 </div>
                 <div class="form-group">
                     <label for="password">Password:</label>
-                    <input type="password" class="form-control" id="password" name="admin_password" required>
+                    <input type="password" class="form-control" id="password" name="student_password" required>
                 </div>
                 <button type="submit" class="btn btn-primary">Submit</button>
             </form>
@@ -26,6 +27,9 @@
             <div class="text-bg-info p-3"><span style="background-color:yellow;">{{return_message}}</span></div>
 
         </div>
+        <form action="/admin/login">
+            <button type="submit" class="btn btn-primary ">For Instructors</button>
+        </form>
     </div>
 </div>
 
