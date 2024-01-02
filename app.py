@@ -1,12 +1,23 @@
 # Info form se aage nahi jaa rahi :)
-from flask import Flask , render_template , request , json , jsonify
+from flask import Flask , render_template , request , json , jsonify, session, redirect, url_for
 
-from db_info import dummy_database as ddb
-from db_info import admin_dummy_database as adb
-from db_info import data
+import json
+import random
+import string
+
+def genKey(n=15):
+    characters = string.ascii_letters + string.digits + string.punctuation
+    random_string = ''.join(random.choice(characters) for _ in range(n))
+    return random_string
+
+db = json.load(open('db.json', 'r'))
+ddb = db['dummy_database']
+adb = db['admin_dummy_database']
+data = db['data']
 
 
 app = Flask(__name__)
+app.secret_key = "key"
 
 
 @app.route("/try")
@@ -17,19 +28,43 @@ def myTry():
 
 @app.route("/" , methods = ["POST" , "GET"])
 def home():
-    return render_template("std_login.html")
+    logged_user = None
+    try:
+        for i in ddb:
+            if i['session']==session['session']:
+                logged_user = i
+    except KeyError:
+        pass
+    if not logged_user:
+        return render_template("std_login.html")
+    elif logged_user:
+        return render_template("std_dashboard.html", student_email = logged_user['email'], show_email = logged_user['email'])
 
-@app.route("/student_dashbord" , methods = ["POST"])
+@app.route("/student_dashbord" , methods = ["POST", 'GET'])
 def std_login():
     student_email = request.form["student_email"]
     student_password = request.form["student_password"]
-    
-    if student_email not in ddb:
+    user_exists = False
+    logged_user = None
+    logged_user_index = None
+    for i in ddb:
+        if i['email']==student_email:
+            user_exists = True
+        if i['password']==student_password:
+            logged_user = i
+            logged_user_index = ddb.index(logged_user)
+    if not user_exists:
         return render_template("std_login.html" , return_message = "Invalid User")
-    else:
-        if ddb[student_email] != student_password:
+    elif user_exists:
+        if not logged_user:
             return render_template("std_login.html" , return_message = "Invalid Password")
-        else:
+        elif logged_user:
+            new_session = genKey()
+            ddb[logged_user_index]['session'] = new_session
+            db['dummy_database'] = ddb
+            session['session'] = new_session
+            with open('db.json', 'w') as f:
+                json.dump(db, f)
             return render_template("std_dashboard.html" , student_email = student_email , show_email = student_email)
 
 
@@ -69,4 +104,7 @@ def admin_dashboard():
         else:
             return render_template("admin_dashboard.html" , admin_email = admin_email , data = data , show_email = admin_email)
 
-    
+@app.route("/logout")
+def logout():
+    session.pop('session')
+    return redirect(url_for("home"))
