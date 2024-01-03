@@ -8,20 +8,28 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
     
     <nav class="navbar mb-4 " style="background-color: #e3f2fd; ">
-        <div class="container-fluid ">
-          <a class="navbar-brand" href="/">
-            <img src="https://github.com/Kool-Cool/Dump_space/blob/main/COLLAGE_LOGO.png?raw=true" alt="Logo" width="30" height="24" class="d-inline-block align-text-top">
-            Gati Shakti Vishwavidyalaya , Vadodara
-          </a>
-          <div class="d-flex align-items-center">
-            {% if show_email %}
-              <p class="mb-0 mr-2">{{show_email}}</p>
-              <a href="/logout" class="btn btn-primary">Logout</a>
-            {% endif %}
-          </div>
+      <div class="container-fluid ">
+        <a class="navbar-brand" href="/">
+          <img src="https://github.com/Kool-Cool/Dump_space/blob/main/COLLAGE_LOGO.png?raw=true" alt="Logo" width="30" height="24" class="d-inline-block align-text-top">
+          Gati Shakti Vishwavidyalaya , Vadodara
+        </a>
+        <div class="d-flex align-items-center">
+          {% if session['admin_session'] %}
+            <p class="mb-0 mr-2">{{show_email}}</p>
+            <a href="/logout" class="btn btn-primary">Logout</a>
+          {% endif %}
+
+          {% if  session['student_session'] %}
+          <p class="mb-0 mr-2">{{show_email}}</p>
+          <a href="/logout" class="btn btn-primary">Logout</a>
+          {% endif %}
+
         </div>
-        </div>
-      </nav>
+      </div>
+  </nav>
+  
+
+      
     {% block head_containt %}
     
     {% endblock head_containt %}

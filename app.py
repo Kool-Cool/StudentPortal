@@ -1,4 +1,4 @@
-from flask import Flask , render_template , request , json , jsonify, session, redirect, url_for
+from flask import Flask, render_template, request, json, jsonify, session, redirect, url_for
 from flask import flash
 
 import json
@@ -15,23 +15,26 @@ ddb = db['dummy_database']
 adb = db['admin_dummy_database']
 data = db['data']
 
-
 app = Flask(__name__)
 app.secret_key = "key"
 
 
-@app.route("/try")
+
+@app.route("/try" )
 def myTry():
-    return render_template("try.html" )
-
-
+    # if 'student_session' not in session and 'admin_session' not in session:
+    #     return redirect(url_for('home'))
+    # else:
+    #     return render_template("try.html")
+    return render_template("try.html")
+    
 
 @app.route("/" , methods = ["POST" , "GET"])
 def home():
     logged_user = None
     try:
         for i in ddb:
-            if i['session']==session['session']:
+            if i['session']==session['student_session']:
                 logged_user = i
     except KeyError:
         pass
@@ -63,37 +66,19 @@ def std_login():
             new_session = genKey()
             ddb[logged_user_index]['session'] = new_session
             db['dummy_database'] = ddb
-            session['session'] = new_session
+            session['student_session'] = new_session
             with open('db.json', 'w') as f:
                 json.dump(db, f)
-            return render_template("std_dashboard.html" , student_email = student_email , show_email = student_email)
-
-
+            return render_template("std_dashboard.html" , student_email = student_email , show_email = logged_user['email'])
+        
+        
 
 @app.route("/admin/login" )
 def admin_login():
     return render_template("admin_login.html")
 
-
-
 @app.route("/admin_dashbord" ,methods = ["POST"])
 def admin_dashboard():
-    """  
-        1) make sure to show only 5 entries (use VIEWS from sql)
-
-        CREATE OR REPLACE VIEW random_students AS
-        SELECT *
-        FROM students
-        ORDER BY RANDOM()
-        LIMIT 5;
-
-        SELECT * FROM random_students;
-
-
-        2) after pressin show all ; show all entries
-        3) can make new to display all entries (use SELECT qurery)
-
-    """
     admin_email = request.form["admin_email"]
     admin_password = request.form["admin_password"]
     admin_exists = False
@@ -117,19 +102,27 @@ def admin_dashboard():
             new_session = genKey()
             adb[logged_admin_index]['session'] = new_session
             db['admin_dummy_database'] = adb
-            session['session'] = new_session
+            session['admin_session'] = new_session
             with open('db.json', 'w') as f:
                 json.dump(db, f)
                 return render_template("admin_dashboard.html" , admin_email = admin_email  , show_email = admin_email , data=data)
-
-
-
-
+            
+            
+@app.route("/admin_dashbord/add_student")
+def add_student():
+    if 'admin_session' not in session:
+        return redirect(url_for('admin_login'))
+    else:
+        return render_template("add_student.html")
+    
 
 @app.route("/logout")
 def logout():
-    if 'session' in session:
-        session.pop('session')
+    if 'student_session' in session:
+        session.pop('student_session')
+    elif 'admin_session' in session:
+        session.pop('admin_session')
     else:
         flash("You are already logged out.")
     return redirect(url_for("home"))
+
