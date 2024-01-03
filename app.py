@@ -1,4 +1,3 @@
-# Info form se aage nahi jaa rahi :)
 from flask import Flask , render_template , request , json , jsonify, session, redirect, url_for
 
 import json
@@ -47,6 +46,7 @@ def std_login():
     user_exists = False
     logged_user = None
     logged_user_index = None
+    
     for i in ddb:
         if i['email']==student_email:
             user_exists = True
@@ -95,16 +95,38 @@ def admin_dashboard():
     """
     admin_email = request.form["admin_email"]
     admin_password = request.form["admin_password"]
+    admin_exists = False
+    logged_admin = None
+    logged_admin_index = None
     
-    if admin_email not in adb:
-        return render_template("admin_login.html" , return_message = "Invalid User")
-    else:
-        if adb[admin_email] != admin_password:
+    for admin in adb:
+        if admin['email']==admin_email:
+            admin_exists = True
+        if admin["password"] == admin_password:
+            logged_admin = admin
+            logged_admin_index = adb.index(logged_admin)
+    
+    if not admin_exists:
+        return render_template("admin_login.html" , return_message = "Invalid User")   
+   
+    elif admin_exists:
+        if not logged_admin:
             return render_template("admin_login.html" , return_message = "Invalid Password")
-        else:
-            return render_template("admin_dashboard.html" , admin_email = admin_email , data = data , show_email = admin_email)
+        elif logged_admin:
+            new_session = genKey()
+            adb[logged_admin_index]['session'] = new_session
+            db['admin_dummy_database'] = adb
+            session['session'] = new_session
+            with open('db.json', 'w') as f:
+                json.dump(db, f)
+                return render_template("admin_dashboard.html" , admin_email = admin_email  , show_email = admin_email , data=data)
+
+
 
 @app.route("/logout")
 def logout():
-    session.pop('session')
+    try:
+        session.pop('session')
+    except KeyError:
+        pass
     return redirect(url_for("home"))
