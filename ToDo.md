@@ -1,4 +1,8 @@
 - [ ] Connect with Cloud Data Base (ElephantSQL for postgresql)
+? How to use session in Cloud dataBase
+? should fetch data from database , and make one dummy data.json , which will consider the session as previous
+? how to delete the data.json (dummy which will store session) after logout to avoid data leak
+ 
 - [ ] VIEWS of data
 - [ ] Add new entry for data set
 - [ ] Show all button to admin
