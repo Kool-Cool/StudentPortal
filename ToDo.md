@@ -1,12 +1,12 @@
-- User Authentucation in Flask
-- Log OUT button (session terminatio)
-- VIEWS of data
-- Add new entry for data set
-- Show all button to admin
-- For student datshbord 
-                        | - side nav bar design
-                        | - change/edit password
-                        | - no authority to change any other instances
+- [ ] User Authentucation in Flask
+- [X] Log OUT button (session terminatio)
+- [ ] VIEWS of data
+- [ ] Add new entry for data set
+- [ ] Show all button to admin
+- [ ] For student datshbord 
+- [ ] side nav bar design
+- [ ] change/edit password
+- [ ] no authority to change any other instances
 
 
 # User Authentication in Flask
