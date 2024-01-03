@@ -149,6 +149,7 @@ CREATE TABLE IF NOT EXISTS students (
 );
 '''
 
+
 # Insert into students table query
 insert_students_query = '''
 INSERT INTO students (student_id, roll_no, first_name, last_name, email, password, dept_id, dept_branch, credits_earned, gpa)
@@ -171,7 +172,6 @@ SET
 WHERE
     student_id = %s;
 '''
-
 
 
 # Create departments table query
@@ -304,6 +304,7 @@ SET
 WHERE
     course_id = %s AND student_id = %s AND enrollment_id = %s AND semester = %s AND year = %s;
 '''
+
 
 
 
