@@ -1,4 +1,4 @@
-- [ ] How to different pages while being login , (if logged out not possible to accesss)
+- [ ] Connect with Cloud Data Base (ElephantSQL for postgresql)
 - [ ] VIEWS of data
 - [ ] Add new entry for data set
 - [ ] Show all button to admin
@@ -11,6 +11,7 @@
 ---
 - [X] User Authentucation in Flask
 - [X] Log OUT button (session terminatio)
+- [X] How to different pages while being login , (if logged out not possible to accesss)
 
 
 ```
