@@ -1,4 +1,5 @@
 from flask import Flask , render_template , request , json , jsonify, session, redirect, url_for
+from flask import flash
 
 import json
 import random
@@ -123,10 +124,12 @@ def admin_dashboard():
 
 
 
+
+
 @app.route("/logout")
 def logout():
-    try:
+    if 'session' in session:
         session.pop('session')
-    except KeyError:
-        pass
+    else:
+        flash("You are already logged out.")
     return redirect(url_for("home"))

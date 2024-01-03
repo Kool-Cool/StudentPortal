@@ -11,6 +11,16 @@
         <div class="col-md-6">
             <h2 >Student Login Form | GSV</h2>
             
+            {% with messages = get_flashed_messages() %}
+              {% if messages %}
+                <ul class=flashes>
+                {% for message in messages %}
+                    <div class="text-bg-info p-3"><span style="background-color:yellow;">{{ message }}</span></div>
+                    
+                {% endfor %}
+                </ul>
+              {% endif %}
+            {% endwith %}
             
             <form action="/student_dashbord" method="post">
                 <div class="form-group">
@@ -34,5 +44,3 @@
 </div>
 
 {% endblock body_containt %}
-
-
