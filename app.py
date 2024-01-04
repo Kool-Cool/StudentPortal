@@ -20,6 +20,7 @@ app.secret_key = "key"
 
 
 
+# STUDENT
 @app.route("/try" )
 def myTry():
     # if 'student_session' not in session and 'admin_session' not in session:
@@ -73,19 +74,21 @@ def std_login():
         
         
 
+# ADMIN
+
 @app.route("/admin/login" )
 def admin_login():
     logged_admin = None
     try:
         for admin in adb:
-            if admin['session']==session['student_session']:
+            if admin['session']==session['admin_session']:
                 logged_admin = admin
     except KeyError:
         pass
     if not logged_admin:
         return render_template("admin_login.html")
     elif logged_admin:
-        return render_template("admin_dashboard.html", student_email = logged_admin['email'], show_email = logged_admin['email'])
+        return render_template("admin_dashboard.html", student_email = logged_admin['email'], show_email = logged_admin['email'] , data=data)
 
 
     # return render_template("admin_login.html")
@@ -119,8 +122,7 @@ def admin_dashboard():
             with open('db.json', 'w') as f:
                 json.dump(db, f)
                 return render_template("admin_dashboard.html" , admin_email = admin_email  , show_email = admin_email , data=data)
-            
-            
+        
 @app.route("/admin_dashbord/add_student")
 def add_student():
     if 'admin_session' not in session:

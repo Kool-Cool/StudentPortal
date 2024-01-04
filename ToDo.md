@@ -3,7 +3,7 @@
 ? should fetch data from database , and make one dummy data.json , which will consider the session as previous
 ? how to delete the data.json (dummy which will store session) after logout to avoid data leak
 
-- [ ] While admin is logged in , no login form will be seen for admin (/admin/login?)
+
 - [ ] VIEWS of data
 - [ ] Add new entry for data set
 - [ ] Pretify the Forms (both login and data entry/modification)
@@ -18,7 +18,7 @@
 - [X] User Authentucation in Flask
 - [X] Log OUT button (session terminatio)
 - [X] How to different pages while being login , (if logged out not possible to accesss)
-
+- [X] While admin is logged in , no login form will be seen for admin (/admin/login?)
 
 ```
     """  
