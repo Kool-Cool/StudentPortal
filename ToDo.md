@@ -2,9 +2,11 @@
 ? How to use session in Cloud dataBase
 ? should fetch data from database , and make one dummy data.json , which will consider the session as previous
 ? how to delete the data.json (dummy which will store session) after logout to avoid data leak
- 
+
+- [ ] While admin is logged in , no login form will be seen for admin (/admin/login?)
 - [ ] VIEWS of data
 - [ ] Add new entry for data set
+- [ ] Pretify the Forms (both login and data entry/modification)
 - [ ] Show all button to admin
 - [ ] For student datshbord 
 - [ ] side nav bar design

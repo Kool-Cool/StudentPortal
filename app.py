@@ -75,7 +75,20 @@ def std_login():
 
 @app.route("/admin/login" )
 def admin_login():
-    return render_template("admin_login.html")
+    logged_admin = None
+    try:
+        for admin in adb:
+            if admin['session']==session['student_session']:
+                logged_admin = admin
+    except KeyError:
+        pass
+    if not logged_admin:
+        return render_template("admin_login.html")
+    elif logged_admin:
+        return render_template("admin_dashboard.html", student_email = logged_admin['email'], show_email = logged_admin['email'])
+
+
+    # return render_template("admin_login.html")
 
 @app.route("/admin_dashbord" ,methods = ["POST"])
 def admin_dashboard():
@@ -114,7 +127,7 @@ def add_student():
         return redirect(url_for('admin_login'))
     else:
         return render_template("add_student.html")
-    
+
 
 @app.route("/logout")
 def logout():
