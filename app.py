@@ -42,7 +42,7 @@ def home():
     if not logged_user:
         return render_template("std_login.html")
     elif logged_user:
-        return render_template("std_dashboard.html", student_email = logged_user['email'], show_email = logged_user['email'])
+        return render_template("std_dashboard.html", student_email = logged_user['email'], show_email_student = logged_user['email'])
 
 @app.route("/student_dashbord" , methods = ["POST", 'GET'])
 def std_login():
@@ -70,7 +70,7 @@ def std_login():
             session['student_session'] = new_session
             with open('db.json', 'w') as f:
                 json.dump(db, f)
-            return render_template("std_dashboard.html" , student_email = student_email , show_email = logged_user['email'])
+            return render_template("std_dashboard.html" , student_email = student_email , show_email_student = logged_user['email'])
         
         
 
@@ -88,7 +88,7 @@ def admin_login():
     if not logged_admin:
         return render_template("admin_login.html")
     elif logged_admin:
-        return render_template("admin_dashboard.html", student_email = logged_admin['email'], show_email = logged_admin['email'] , data=data)
+        return render_template("admin_dashboard.html", admin_email = logged_admin['email'], show_email_admin = logged_admin['email'] , data=data)
 
 
     # return render_template("admin_login.html")
@@ -121,7 +121,7 @@ def admin_dashboard():
             session['admin_session'] = new_session
             with open('db.json', 'w') as f:
                 json.dump(db, f)
-                return render_template("admin_dashboard.html" , admin_email = admin_email  , show_email = admin_email , data=data)
+                return render_template("admin_dashboard.html" , admin_email = admin_email  , show_email_admin = logged_admin['email'] , data=data)
         
 @app.route("/admin_dashbord/add_student")
 def add_student():

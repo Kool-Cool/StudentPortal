@@ -17,13 +17,13 @@
         </a>
         <div class="d-flex align-items-center">
           {% if session['admin_session'] %}
-            <p class="mb-0 mr-2">{{show_email}}</p>
-            <a href="/logout" class="btn btn-primary">Logout</a>
+            <p class="mb-0 mr-2">{{show_email_admin}}</p>
+            <a href="/logout" class="btn btn-primary">Admin_Logout</a>
           {% endif %}
 
           {% if  session['student_session'] %}
-          <p class="mb-0 mr-2">{{show_email}}</p>
-          <a href="/logout" class="btn btn-primary">Logout</a>
+          <p class="mb-0 mr-2">{{show_email_student}}</p>
+          <a href="/logout" class="btn btn-primary">Student_Logout</a>
           {% endif %}
 
         </div>
