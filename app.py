@@ -123,12 +123,66 @@ def admin_dashboard():
                 json.dump(db, f)
                 return render_template("admin_dashboard.html" , admin_email = admin_email  , show_email_admin = logged_admin['email'] , data=data)
         
-@app.route("/admin_dashbord/add_student")
+from flask import flash, redirect, url_for
+
+# @app.route("/admin_dashbord/add_student", methods=['GET', 'POST'])
+# def add_student():
+#     if 'admin_session' not in session:
+#         return redirect(url_for('admin_login'))
+#     else:
+#         if request.method == 'POST':
+#             student_id=request.form['studentId']
+#             roll_no=request.form['rollNo']
+#             first_name=request.form['firstName']
+#             last_name=request.form['lastName']
+#             email=request.form['inputEmail3']
+#             password=request.form['inputPassword3']
+#             dept_id=request.form['deptId']
+#             dept_branch=request.form['deptBranch']
+#             credits_earned=request.form['creditsEarned']
+#             gpa=request.form['gpa']
+            
+#             # Show a success message
+#             flash(f'Student added successfully {student_id ,roll_no , gpa,credits_earned,}')
+            
+#             # Redirect to the admin dashboard
+#             return redirect(url_for('admin_dashboard'))
+#         else:
+#             return render_template('add_student.html')
+
+  
+  
+from flask import jsonify
+
+@app.route("/admin_dashbord/add_student", methods=['GET', 'POST'])
 def add_student():
     if 'admin_session' not in session:
         return redirect(url_for('admin_login'))
     else:
-        return render_template("add_student.html")
+        if request.method == 'POST':
+            # student = Student(
+            student_id=request.form['studentId'],
+            roll_no=request.form['rollNo'],
+            first_name=request.form['firstName'],
+            last_name=request.form['lastName'],
+            email=request.form['inputEmail3'],
+            password=request.form['inputPassword3'],
+            dept_id=request.form['deptId'],
+            dept_branch=request.form['deptBranch'],
+            credits_earned=request.form['creditsEarned'],
+            gpa=request.form['gpa']
+            # )
+            # db.session.add(student)
+            # db.session.commit()
+            
+            return jsonify({'result': 'success'})
+        else:
+            return render_template('add_student.html')
+
+        
+        
+        
+        
 
 
 @app.route("/logout")

@@ -2,86 +2,130 @@
 
 {% block head_containt %}
 <title> Add student | GSV </title>
+<!-- Add these lines to include the sweetalert library -->
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 {% endblock head_containt %}
-
-
 
 {% block body_containt %}
 <div class="container-fluid d-flex justify-content-center" style="padding-top: 20px;">
     <div class="row justify-content-centre ">
-        <form> 
+        <form class="form" onsubmit="event.preventDefault(); onSubmit();" method="post" action="/admin_dashbord"> <!-- Add a class name to the form -->
+            <!-- Your form fields go here -->
             <div class="form-group row">
-                <label for="studentId" class="col-sm-2 col-form-label">Student ID</label>
+              <label for="studentId" class="col-sm-2 col-form-label">Student ID</label>
+              <div class="col-sm-10">
+              <input type="text" class="form-control ml-4" id="studentId" placeholder="Student ID">
+              </div>
+  </div>
+  <div class="form-group row">
+    <label for="rollNo" class="col-sm-2 col-form-label">Roll No</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control ml-4" id="rollNo" placeholder="Roll No">
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="firstName" class="col-sm-2 col-form-label">First Name</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control ml-4" id="firstName" placeholder="First Name">
+    </div>
+  </div>
+  <div class="form-group row ">
+    <label for="lastName" class="col-sm-2 col-form-label">Last Name</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control ml-4" id="lastName" placeholder="Last Name">
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="inputEmail3" class="col-sm-2 col-form-label">Email</label>
+    <div class="col-sm-10">
+      <input type="email" class="form-control ml-4" id="inputEmail3" placeholder="Email">
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="inputPassword3" class="col-sm-2 col-form-label">Password</label>
+    <div class="col-sm-10">
+      <input type="password" class="form-control ml-4" id="inputPassword3" placeholder="Password">
+    </div>
+  </div>
+  <div class="form-group row ">
+    <label for="deptId" class="col-sm-2 col-form-label">Department ID</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control ml-4 " id="deptId" placeholder="Department ID">
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="deptBranch" class="col-sm-2 col-form-label">Department Branch</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control ml-4" id="deptBranch" placeholder="Department Branch">
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="creditsEarned" class="col-sm-2 col-form-label">Credits Earned</label>
+    <div class="col-sm-10">
+      <input type="number" class="form-control ml-4" id="creditsEarned" placeholder="Credits Earned">
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="gpa" class="col-sm-2 col-form-label">GPA</label>
+    <div class="col-sm-10">
+      <input type="number" step="0.01" class="form-control ml-4" id="gpa" placeholder="GPA">
+    </div>
+  </div>
+            <div class="form-group row">
                 <div class="col-sm-10">
-                <input type="text" class="form-control ml-4" id="studentId" placeholder="Student ID">
+                  <button type="submit" class="btn btn-primary">Submit</button>
                 </div>
-    </div>
-    <div class="form-group row">
-      <label for="rollNo" class="col-sm-2 col-form-label">Roll No</label>
-      <div class="col-sm-10">
-        <input type="text" class="form-control ml-4" id="rollNo" placeholder="Roll No">
-      </div>
-    </div>
-    <div class="form-group row">
-      <label for="firstName" class="col-sm-2 col-form-label">First Name</label>
-      <div class="col-sm-10">
-        <input type="text" class="form-control ml-4" id="firstName" placeholder="First Name">
-      </div>
-    </div>
-    <div class="form-group row ">
-      <label for="lastName" class="col-sm-2 col-form-label">Last Name</label>
-      <div class="col-sm-10">
-        <input type="text" class="form-control ml-4" id="lastName" placeholder="Last Name">
-      </div>
-    </div>
-    <div class="form-group row">
-      <label for="inputEmail3" class="col-sm-2 col-form-label">Email</label>
-      <div class="col-sm-10">
-        <input type="email" class="form-control ml-4" id="inputEmail3" placeholder="Email">
-      </div>
-    </div>
-    <div class="form-group row">
-      <label for="inputPassword3" class="col-sm-2 col-form-label">Password</label>
-      <div class="col-sm-10">
-        <input type="password" class="form-control ml-4" id="inputPassword3" placeholder="Password">
-      </div>
-    </div>
-    <div class="form-group row ">
-      <label for="deptId" class="col-sm-2 col-form-label">Department ID</label>
-      <div class="col-sm-10">
-        <input type="text" class="form-control ml-4 " id="deptId" placeholder="Department ID">
-      </div>
-    </div>
-    <div class="form-group row">
-      <label for="deptBranch" class="col-sm-2 col-form-label">Department Branch</label>
-      <div class="col-sm-10">
-        <input type="text" class="form-control ml-4" id="deptBranch" placeholder="Department Branch">
-      </div>
-    </div>
-    <div class="form-group row">
-      <label for="creditsEarned" class="col-sm-2 col-form-label">Credits Earned</label>
-      <div class="col-sm-10">
-        <input type="number" class="form-control ml-4" id="creditsEarned" placeholder="Credits Earned">
-      </div>
-    </div>
-    <div class="form-group row">
-      <label for="gpa" class="col-sm-2 col-form-label">GPA</label>
-      <div class="col-sm-10">
-        <input type="number" step="0.01" class="form-control ml-4" id="gpa" placeholder="GPA">
-      </div>
-    </div>
-
-    <div class="form-group row">
-        <div class="col-sm-10">
-          <button type="submit" class="btn btn-primary">Submit</button>
-        </div>
-    </div> 
-
+            </div> 
         </form>
     </div>
 </div>
 
+<script>
+  function onSubmit() {
+    var studentId = document.getElementById('studentId').value;
+    var rollNo = document.getElementById('rollNo').value;
+    var firstName = document.getElementById('firstName').value;
+    var lastName = document.getElementById('lastName').value;
+    var email = document.getElementById('inputEmail3').value;
+    var password = document.getElementById('inputPassword3').value;
+    var deptId = document.getElementById('deptId').value;
+    var deptBranch = document.getElementById('deptBranch').value;
+    var creditsEarned = document.getElementById('creditsEarned').value;
+    var gpa = document.getElementById('gpa').value;
 
- 
+    var data = {
+      studentId: studentId,
+      rollNo: rollNo,
+      firstName: firstName,
+      lastName: lastName,
+      email: email,
+      password: password,
+      deptId: deptId,
+      deptBranch: deptBranch,
+      creditsEarned: creditsEarned,
+      gpa: gpa
+    };
+
+    fetch('/admin_dashbord/add_student', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(data)
+    })
+    .then(response => response.json())
+    .then(data => {
+      swal("Success!", `Student ID: ${studentId}\nRoll No: ${rollNo}\nFirst Name: ${firstName}\nLast Name: ${lastName}\nEmail: ${email}\nDepartment ID: ${deptId}\nDepartment Branch: ${deptBranch}\nCredits Earned: ${creditsEarned}\nGPA: ${gpa}`, "success")
+      .then(() => {
+        window.location.href = "/admin_dashboard";
+      });
+    })
+    .catch((error) => {
+      console.error('Error:', error);
+    });
+  }
+</script>
+
+
+
 {% endblock body_containt %}
-
